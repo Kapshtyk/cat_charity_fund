@@ -12,10 +12,9 @@ from app.schemas.charity_project import (
     CharityProjectUpdate,
 )
 from app.schemas.errors import Error
+from app.services.charity_project_service import CharityProjectService
 
 router = APIRouter()
-
-from app.services.charity_project_service import CharityProjectService
 
 
 @router.post(

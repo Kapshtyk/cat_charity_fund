@@ -11,7 +11,7 @@ class CRUDDonation(CRUDBase):
         self,
         session: AsyncSession,
     ) -> list[Donation]:
-        statement = select(Donation).where(Donation.fully_invested == False)
+        statement = select(Donation).where(Donation.fully_invested == 0)
         donations = await session.execute(statement)
         return donations.scalars().all()
 

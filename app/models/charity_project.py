@@ -9,6 +9,6 @@ class CharityProject(CommonFields):
 
     def __repr__(self):
         return f"""
-            Благотворительный проект {self.name} на сумму {self.full_amount}. 
+            Благотворительный проект {self.name} на сумму {self.full_amount}.
             Остаток - {self.full_amount - self.invested_amount}.
             """

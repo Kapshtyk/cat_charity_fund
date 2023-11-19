@@ -12,10 +12,9 @@ from app.schemas.donation import (
     DonationDbSuperuser,
 )
 from app.schemas.errors import Error
+from app.services.donation_service import DonationService
 
 router = APIRouter()
-
-from app.services.donation_service import DonationService
 
 
 @router.post(

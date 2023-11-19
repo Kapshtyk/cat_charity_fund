@@ -46,10 +46,10 @@ class CharityProjectService(BaseService):
                 status_code=400,
                 detail="Закрытый проект нельзя редактировать!",
             )
+        new_full_amount = updated_charity_project.full_amount
         if (
-            charity_project.invested_amount
-            and updated_charity_project.full_amount
-            < charity_project.invested_amount
+            new_full_amount
+            and new_full_amount < charity_project.invested_amount
         ):
             raise HTTPException(
                 status_code=400,
