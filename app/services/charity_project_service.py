@@ -49,7 +49,7 @@ class CharityProjectService(BaseService):
         new_full_amount = updated_charity_project.full_amount
         if (
             new_full_amount
-            and new_full_amount < charity_project.invested_amount
+            and new_full_amount < charity_project.invested_amount  # noqa W503
         ):
             raise HTTPException(
                 status_code=400,
