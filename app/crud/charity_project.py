@@ -12,7 +12,9 @@ class CRUDCharityProject(CRUDBase):
         self,
         session: AsyncSession,
     ) -> list[CharityProject]:
-        statement = select(CharityProject).where(CharityProject.fully_invested == False)
+        statement = select(CharityProject).where(
+            CharityProject.fully_invested == False
+        )
         charity_projects = await session.execute(statement)
         return charity_projects.scalars().all()
 
@@ -22,7 +24,9 @@ class CRUDCharityProject(CRUDBase):
         session: AsyncSession,
         project_id: Optional[int] = None,
     ) -> int:
-        statement = select(CharityProject.id).where(CharityProject.name == name)
+        statement = select(CharityProject.id).where(
+            CharityProject.name == name
+        )
         if project_id:
             statement = statement.where(CharityProject.id != project_id)
         project = await session.execute(statement)

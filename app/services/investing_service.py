@@ -18,7 +18,9 @@ class InvestingService:
         return result
 
     async def check_charity_projects(self):
-        result = await charity_project_crud.check_charity_projects(self.session)
+        result = await charity_project_crud.check_charity_projects(
+            self.session
+        )
         return result
 
     async def invest(
@@ -26,7 +28,9 @@ class InvestingService:
         obj: Union[CharityProject, Donation],
         obj_list: Union[list[Donation], list[CharityProject]],
     ):
-        async def process(donation: Donation, charity_project: CharityProject, session):
+        async def process(
+            donation: Donation, charity_project: CharityProject, session
+        ):
             required_amount = (
                 charity_project.full_amount - charity_project.invested_amount
             )

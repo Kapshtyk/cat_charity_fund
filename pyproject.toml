@@ -1,0 +1,24 @@
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | \venv
+  | venv
+  | .venv
+  | test
+  | tests
+  | \tests
+  | \test
+  | _build
+  | buck-out
+  | build
+  | dist
+  | ^.*\b(versions)\b.*$
+)/
+'''

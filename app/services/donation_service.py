@@ -13,9 +13,13 @@ class DonationService(BaseService):
         user: User,
     ):
         donation = await super().create(donation, user=user)
-        available_projects = await self.investing_service.check_charity_projects()
+        available_projects = (
+            await self.investing_service.check_charity_projects()
+        )
         if available_projects:
-            donation = await self.investing_service.invest(donation, available_projects)
+            donation = await self.investing_service.invest(
+                donation, available_projects
+            )
         return donation
 
     async def get_all_donations_of_user(self, user: User):

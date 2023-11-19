@@ -48,7 +48,8 @@ class CharityProjectService(BaseService):
             )
         if (
             charity_project.invested_amount
-            and updated_charity_project.full_amount < charity_project.invested_amount
+            and updated_charity_project.full_amount
+            < charity_project.invested_amount
         ):
             raise HTTPException(
                 status_code=400,
@@ -63,7 +64,9 @@ class CharityProjectService(BaseService):
                     status_code=400,
                     detail="Проект с таким именем уже существует!",
                 )
-        charity_project = await super().update(charity_project, updated_charity_project)
+        charity_project = await super().update(
+            charity_project, updated_charity_project
+        )
         if charity_project.invested_amount == charity_project.full_amount:
             charity_project.close_date = datetime.now()
             charity_project.fully_invested = True

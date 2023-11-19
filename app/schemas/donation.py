@@ -19,7 +19,9 @@ class DonationDbCommonUser(DonationCreate):
         orm_mode = True
 
 
-class DonationDbSuperuser(DonationAndCharityProjectCommonFields, DonationDbCommonUser):
+class DonationDbSuperuser(
+    DonationAndCharityProjectCommonFields, DonationDbCommonUser
+):
     user_id: int
 
     class Config:

@@ -1,7 +1,13 @@
-from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, Extra, Field, PositiveInt, ValidationError, validator
+from pydantic import (
+    BaseModel,
+    Extra,
+    Field,
+    PositiveInt,
+    ValidationError,
+    validator,
+)
 
 from app.schemas.mixins import DonationAndCharityProjectCommonFields
 
@@ -58,6 +64,8 @@ class CharityProjectUpdate(BaseModel):
         return value
 
 
-class CharityProjectDb(DonationAndCharityProjectCommonFields, CharityProjectCreate):
+class CharityProjectDb(
+    DonationAndCharityProjectCommonFields, CharityProjectCreate
+):
     class Config:
         orm_mode = True

@@ -37,7 +37,7 @@ source venv/scripts/activate
 pip install -r requirements.txt
 ```
 3. Create `.env` file in the root of the project (you can use .env.example as a reference)
-4. Initialize the database (SQLite) for development.
+4. Initialise the database (SQLite) for development.
 ```
 alembic upgrade head
 ```
@@ -56,5 +56,5 @@ This project only provides the API, so you will need to use Postman (or another 
 This project was created as part of a sprint assignment. Thank you for checking it out!
 
 ## Author
-- LinkedIn - [Arseny Kapshtyk](https://www.linkedin.com/in/kapshtyk/)
+- LinkedIn - [Arseniiy Kapshtyk](https://www.linkedin.com/in/kapshtyk/)
 - Github - [@kapshtyk](https://github.com/Kapshtyk)
