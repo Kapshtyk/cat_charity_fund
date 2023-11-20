@@ -28,9 +28,7 @@ class InvestingService:
         obj: Union[CharityProject, Donation],
         obj_list: Union[list[Donation], list[CharityProject]],
     ):
-        async def process(
-            donation: Donation, charity_project: CharityProject, session
-        ):
+        async def process(donation: Donation, charity_project: CharityProject):
             required_amount = (
                 charity_project.full_amount - charity_project.invested_amount
             )
@@ -59,10 +57,10 @@ class InvestingService:
 
         if isinstance(obj, CharityProject):
             for donation in obj_list:
-                await process(donation, obj, self.session)
+                await process(donation, obj)
         elif isinstance(obj, Donation):
             for charity_project in obj_list:
-                await process(obj, charity_project, self.session)
+                await process(obj, charity_project)
 
         await self.session.commit()
         await self.session.refresh(obj)

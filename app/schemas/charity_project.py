@@ -9,20 +9,30 @@ from pydantic import (
     validator,
 )
 
+from app.core.constants import (
+    CHARITY_PROJECT_DESCRIPTION_MIN_LENGTH,
+    CHARITY_PROJECT_NAME_MAX_LENGTH,
+    CHARITY_PROJECT_NAME_MIN_LENGTH,
+)
 from app.schemas.mixins import DonationAndCharityProjectCommonFields
 
 
 class CharityProjectCreate(BaseModel):
-    name: str = Field(None, min_length=1, max_length=100)
-    description: str = Field(None, min_length=1)
+    name: str = Field(
+        None,
+        min_length=CHARITY_PROJECT_NAME_MIN_LENGTH,
+        max_length=CHARITY_PROJECT_NAME_MAX_LENGTH,
+    )
+    description: str = Field(
+        None, min_length=CHARITY_PROJECT_DESCRIPTION_MIN_LENGTH
+    )
     full_amount: PositiveInt = Field(None, example=1)
 
     @validator("name")
     def validate_name(cls, value):
-        print(value)
-        if not value or len(value) > 100:
+        if not value or len(value) > CHARITY_PROJECT_NAME_MAX_LENGTH:
             return ValidationError(
-                "Имя проекта не может быть пустым и не может быть длиннее 100 символов!"
+                f"""Имя проекта не может быть пустым и не может быть длиннее {CHARITY_PROJECT_NAME_MAX_LENGTH} символов!"""  # noqa E501
             )
         return value
 
@@ -42,8 +52,14 @@ class CharityProjectCreate(BaseModel):
 
 
 class CharityProjectUpdate(BaseModel):
-    name: Optional[str] = Field(None, min_length=1, max_length=100)
-    description: Optional[str] = Field(None, min_length=1)
+    name: Optional[str] = Field(
+        None,
+        min_length=CHARITY_PROJECT_NAME_MIN_LENGTH,
+        max_length=CHARITY_PROJECT_NAME_MAX_LENGTH,
+    )
+    description: Optional[str] = Field(
+        None, min_length=CHARITY_PROJECT_DESCRIPTION_MIN_LENGTH
+    )
     full_amount: Optional[PositiveInt] = Field(None)
 
     class Config:
@@ -51,9 +67,9 @@ class CharityProjectUpdate(BaseModel):
 
     @validator("name")
     def validate_name(cls, value):
-        if not value or len(value) > 100:
+        if not value or len(value) > CHARITY_PROJECT_NAME_MAX_LENGTH:
             return ValidationError(
-                "Имя проекта не может быть пустым и не может быть длиннее 100 символов!"
+                f"""Имя проекта не может быть пустым и не может быть длиннее {CHARITY_PROJECT_NAME_MAX_LENGTH} символов!"""  # noqa E501
             )
         return value
 

@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from typing import Optional
 
 from fastapi import HTTPException
@@ -22,9 +23,8 @@ class BaseService:
         try:
             return await self.CRUD.create(obj_in, self.session, user=user)
         except IntegrityError:
-            print(IntegrityError)
             raise HTTPException(
-                status_code=422,
+                status_code=HTTPStatus.UNPROCESSABLE_ENTITY,
                 detail="Something went wrong!",
             )
 

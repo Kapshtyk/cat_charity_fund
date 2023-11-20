@@ -1,4 +1,5 @@
 from datetime import datetime
+from http import HTTPStatus
 
 from fastapi import HTTPException
 
@@ -31,7 +32,7 @@ class CharityProjectService(BaseService):
         charity_project = await super().get(charity_project_id)
         if charity_project.invested_amount > 0:
             raise HTTPException(
-                status_code=400,
+                status_code=HTTPStatus.BAD_REQUEST,
                 detail="В проект были внесены средства, не подлежит удалению!",
             )
         charity_project = await super().remove(charity_project)
@@ -43,7 +44,7 @@ class CharityProjectService(BaseService):
         charity_project = await super().get(charity_project_id)
         if charity_project.close_date:
             raise HTTPException(
-                status_code=400,
+                status_code=HTTPStatus.BAD_REQUEST,
                 detail="Закрытый проект нельзя редактировать!",
             )
         new_full_amount = updated_charity_project.full_amount
@@ -52,7 +53,7 @@ class CharityProjectService(BaseService):
             and new_full_amount < charity_project.invested_amount  # noqa W503
         ):
             raise HTTPException(
-                status_code=400,
+                status_code=HTTPStatus.BAD_REQUEST,
                 detail="Количество средств не может быть меньше уже внесенных средств!",
             )
         if updated_charity_project.name:
@@ -61,7 +62,7 @@ class CharityProjectService(BaseService):
             )
             if projects is not None:
                 raise HTTPException(
-                    status_code=400,
+                    status_code=HTTPStatus.BAD_REQUEST,
                     detail="Проект с таким именем уже существует!",
                 )
         charity_project = await super().update(
