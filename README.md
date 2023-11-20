@@ -1,5 +1,7 @@
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=Kapshtyk_cat_charity_fund)](https://sonarcloud.io/summary/new_code?id=Kapshtyk_cat_charity_fund)
 
+[![FastAPI testing workflow](https://github.com/Kapshtyk/cat_charity_fund/actions/workflows/main.yaml/badge.svg)](https://github.com/Kapshtyk/cat_charity_fund/actions/workflows/main.yaml)
+
 # Cat charity project QRKot
 This is a simple API written in Python using the FastAPI framework. It allows users to create charity projects and make donations. The distribution of funds between the charity projects is done automatically under the hood.
 
