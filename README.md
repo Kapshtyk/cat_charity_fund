@@ -51,6 +51,10 @@ uvicorn app.main:app
 
 This project only provides the API, so you will need to use Postman (or another similar tool) to interact with the application. Another option is to use the Swagger documentation at `http://localhost:8000/docs`. You will need to authorise yourself using the Authorise button.
 
+## Swagger documentation screenshot
+
+![desktop](https://github.com/Kapshtyk/cat_charity_fund/blob/master/screenshots/localhost_8000_docs.png?raw=true)
+
 ## Acknowledgments
 
 This project was created as part of a sprint assignment. Thank you for checking it out!
